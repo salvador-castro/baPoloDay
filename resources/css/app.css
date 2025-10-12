@@ -1,117 +1,427 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Wittgenstein:ital,wght@0,400..900;1,400..900&display=swap');
 
-/* === Colores === */
+/* ===== Colores ===== */
 :root {
-    --sand: #d0ccb9;
-    --nav-text: #2b2b2b;
+    --sand: #151B51;
+    --nav-text: #ffffff;
     --nav-hover: #000;
+}
+
+/* ===== APLICAR WITTGENSTEIN A TODA LA TIPOGRAFÍA ===== */
+* {
+    font-family: 'Wittgenstein', serif;
+}
+
+body {
+    font-family: 'Wittgenstein', serif;
+    font-weight: 400;
+    line-height: 1.6;
 }
 
 .bg-sand {
     background-color: var(--sand) !important;
 }
 
-/* === NAVBAR === */
+/* ===== NAVBAR BASE ===== */
 .navbar {
-    --bs-navbar-color: var(--nav-text);
-    --bs-navbar-hover-color: var(--nav-hover);
-    --bs-navbar-brand-color: var(--nav-text);
-    --bs-navbar-toggler-border-color: transparent;
-    font-family: 'Inter', sans-serif !important;
-    line-height: 1 !important;
-    padding-top: 4px !important;
-    /* más fino pero deja respiro a la marca */
-    padding-bottom: 4px !important;
-    border: none !important;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    background: var(--sand) !important;
+    border: 0 !important;
+    z-index: 3000;
+    font-family: 'Wittgenstein', serif;
+    font-weight: 400;
+    padding: 0;
+}
+
+body {
+    padding-top: 90px !important;
+}
+
+.navbar>.container-fluid {
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    height: 90px;
     position: relative;
-    z-index: 1500 !important;
 }
 
-.navbar-grid {
-    display: grid !important;
-    grid-template-columns: 1fr auto 1fr !important;
-    align-items: center !important;
+/* Logo - Ahora con Wittgenstein */
+.navbar-brand {
+    font-family: 'Wittgenstein', serif;
+    font-weight: 600;
+    color: #fff !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .25);
+    white-space: nowrap;
+    margin: 0;
+    text-decoration: none;
 }
 
-.navbar .nav-link {
+/* MARGEN PARA LOGOS - CORREGIDO */
+.navbar-brand img {
+    display: block;
+}
+
+/* Estilos para mobile */
+.navbar-brand.d-lg-none {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 8px 0;
+}
+
+/* Enlaces */
+.navbar-nav .nav-link {
     color: var(--nav-text) !important;
-    font-size: 0.92rem !important;
-    text-decoration: none !important;
-    padding: 0 .25rem !important;
+    font-size: 0.95rem;
+    font-family: 'Wittgenstein', serif;
+    font-weight: 400;
+    text-decoration: none;
 }
 
-.navbar .nav-link:hover {
+.navbar-nav .nav-link:hover {
     color: var(--nav-hover) !important;
 }
 
-/* Marca 42px en desktop, más chica en móvil */
-.navbar-brand {
-    font-family: 'Playfair Display', serif;
-    font-weight: 600;
-    color: #fff !important;
-    /* blanco */
-    white-space: nowrap;
-    justify-self: center;
-    font-size: 42px;
-    /* pedido */
-    line-height: 1.05;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, .25);
+/* Idiomas */
+.lang-group {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
 }
 
-@media (max-width: 991.98px) {
-    .navbar-grid {
-        display: flex !important;
-        justify-content: space-between;
-    }
-
-    .navbar-brand {
-        font-size: 28px;
-    }
-
-    /* ajuste móvil */
-}
-
-/* Idiomas en negro (no azul link) */
 .lang-link {
-    color: #000 !important;
-    text-decoration: none !important;
+    color: #ffffff !important;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-family: 'Wittgenstein', serif;
+    font-weight: 400;
 }
 
 .lang-link:hover {
-    color: #000 !important;
-    text-decoration: underline !important;
+    text-decoration: underline;
 }
 
-/* Dropdown: mismo color que navbar + abrir en hover en desktop */
+.separador-lang {
+    color: #ffffff;
+}
+
+/* Dropdown */
 .dropdown-menu {
-    background-color: var(--sand) !important;
-    border: 0 !important;
-    box-shadow: none !important;
-    padding: .25rem 0 !important;
-    position: absolute !important;
-    z-index: 2000 !important;
-    /* asegura que quede arriba del video */
+    background: var(--sand);
+    border: 0;
+    border-radius: 0;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, .08);
+    font-family: 'Wittgenstein', serif;
 }
 
 .dropdown-item {
-    color: var(--nav-text) !important;
-    font-size: .95rem !important;
+    color: var(--nav-text);
+    padding: 10px 16px;
+    font-family: 'Wittgenstein', serif;
+    font-weight: 400;
 }
 
 .dropdown-item:hover {
-    background-color: rgba(0, 0, 0, .04) !important;
-    color: var(--nav-hover) !important;
+    background: rgba(0, 0, 0, .06);
+    color: var(--nav-hover);
 }
 
-/* Abrir en hover sólo en pantallas grandes */
-@media (min-width: 992px) {
-    .hover-open:hover>.dropdown-menu {
+/* ===== MOBILE (<= 991.98px) ===== */
+@media (max-width: 991.98px) {
+
+    .mobile-menu-custom {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--sand);
+        z-index: 4000;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .mobile-menu-custom.show {
         display: block !important;
-        margin-top: 0 !important;
+    }
+
+    .navbar {
+        height: 60px;
+    }
+
+    body {
+        padding-top: 60px !important;
+    }
+
+    .navbar>.container-fluid {
+        padding: 0 0.5rem;
+        height: 60px;
+        justify-content: space-between;
+    }
+
+    /* Logo mobile - CORREGIDO */
+    .navbar-brand.d-lg-none {
+        font-size: 24px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: 'Wittgenstein', serif;
+        font-weight: 600;
+        padding: 8px 0;
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+
+    /* Ajuste específico para la imagen en mobile */
+    .navbar-brand.d-lg-none img {
+        height: 50px;
+        width: auto;
+    }
+
+    /* Hamburguesa */
+    .navbar-toggler {
+        border: none;
+        padding: 0.25rem;
+        z-index: 3001;
+        background: transparent !important;
+    }
+
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    }
+
+    .navbar-toggler:focus,
+    .navbar-toggler:active {
+        box-shadow: none !important;
+        outline: none !important;
+    }
+
+    /* Idiomas */
+    .lang-group {
+        z-index: 3001;
+        position: relative;
+    }
+
+    /* === MENÚ MÓVIL PRINCIPAL === */
+    #mobileNav.navbar-collapse {
+        display: none !important;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--sand);
+        z-index: 4000;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        transition: none !important;
+    }
+
+    #mobileNav.collapse {
+        display: none !important;
+    }
+
+
+    #mobileNav.collapse:not(.show) {
+        display: none !important;
+        height: 0 !important;
+        overflow: hidden !important;
+    }
+
+    #mobileNav.collapse.show {
+        display: block !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    #mobileNav .navbar-nav {
+        padding: 1rem;
+    }
+
+    #mobileNav .nav-item {
+        margin-bottom: 0.5rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    #mobileNav .nav-item:last-child {
+        border-bottom: none;
+    }
+
+    #mobileNav .nav-link {
+        padding: 0.75rem 0;
+        display: block;
+        position: relative;
+        font-family: 'Wittgenstein', serif;
+        font-weight: 400;
+    }
+
+    /* === DROPDOWNS MÓVIL === */
+    #mobileNav .dropdown-menu {
+        display: none !important;
+        background: rgba(0, 0, 0, 0.03) !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0.5rem 0 0.5rem 1.5rem !important;
+        margin: 0.5rem 0 !important;
+        position: static !important;
+        font-family: 'Wittgenstein', serif;
+    }
+
+    #mobileNav .dropdown-menu.show {
+        display: block !important;
+    }
+
+    #mobileNav .dropdown-toggle {
+        padding-right: 2.5rem !important;
+    }
+
+    #mobileNav .dropdown-toggle::after {
+        display: inline-block !important;
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0 !important;
+        vertical-align: 0 !important;
+        content: "▾";
+        border: none !important;
+        font-size: 1.3em;
+        line-height: 1;
+        transition: transform 0.3s ease;
+    }
+
+    #mobileNav .dropdown-toggle[aria-expanded="true"]::after {
+        transform: translateY(-50%) rotate(180deg);
+    }
+
+    #mobileNav .dropdown-item {
+        padding: 0.6rem 1rem !important;
+        border-left: 2px solid rgba(0, 0, 0, 0.1);
+        font-size: 0.9rem;
+        color: var(--nav-text) !important;
+        font-family: 'Wittgenstein', serif;
+        font-weight: 400;
+    }
+
+    #mobileNav .dropdown-item:hover {
+        background: rgba(0, 0, 0, 0.06) !important;
+        color: var(--nav-hover) !important;
+    }
+
+    /* Ocultar desktop en mobile */
+    .desktop-menu {
+        display: none !important;
     }
 }
 
-/* === HERO === (por si no lo tenés ya) */
+/* ===== DESKTOP (>= 992px) ===== */
+@media (min-width: 992px) {
+
+    /* Ocultar elementos mobile */
+    .navbar-toggler,
+    .navbar-brand.d-lg-none,
+    #mobileNav {
+        display: none !important;
+    }
+
+    /* Estructura desktop */
+    .navbar>.container-fluid {
+        justify-content: space-between;
+    }
+
+    /* Menú desktop izquierda */
+    .desktop-menu {
+        display: flex !important;
+        align-items: center;
+    }
+
+    .desktop-menu .navbar-nav {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .desktop-menu .nav-link {
+        padding: 0 0.8rem;
+        line-height: 72px;
+        white-space: nowrap;
+        font-family: 'Wittgenstein', serif;
+        font-weight: 400;
+    }
+
+    /* Logo desktop centrado - CORREGIDO */
+    .navbar-brand.d-none.d-lg-block {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        font-size: 42px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: 'Wittgenstein', serif;
+        font-weight: 600;
+        height: 90px;
+        /* Aumentado de 72px a 90px para dar espacio al padding */
+        padding: 10px 0;
+        box-sizing: border-box;
+    }
+
+    /* Ajuste específico para la imagen en desktop */
+    .navbar-brand.d-none.d-lg-block img {
+        height: 72px;
+        /* Cambiado de 52px a 72px */
+        width: auto;
+        display: block;
+    }
+
+    /* Idiomas derecha */
+    .lang-group {
+        margin-left: auto;
+    }
+
+    /* Hover dropdowns desktop */
+    .desktop-menu .dropdown {
+        position: relative;
+    }
+
+    .desktop-menu .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 200px;
+        font-family: 'Wittgenstein', serif;
+    }
+
+    .desktop-menu .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    .desktop-menu .dropdown-toggle::after {
+        display: inline-block !important;
+        margin-left: 0.3em;
+        vertical-align: 0.1em;
+        content: "▾";
+        border: none !important;
+        font-size: 0.9em;
+        transition: transform 0.2s ease;
+        opacity: 0.8;
+    }
+
+    .desktop-menu .dropdown:hover .dropdown-toggle::after {
+        transform: rotate(180deg);
+        opacity: 1;
+    }
+}
+
+/* ===== HERO ===== */
 .hero {
     position: relative;
     width: 100%;
@@ -144,12 +454,14 @@
     font-size: clamp(2rem, 6vw, 4rem);
     line-height: 1.05;
     font-weight: 600;
+    font-family: 'Wittgenstein', serif;
 }
 
 .hero-subtitle {
     font-size: clamp(1.1rem, 2.3vw, 1.5rem);
     font-weight: 400;
     margin-top: .6rem;
+    font-family: 'Wittgenstein', serif;
 }
 
 .hero-btn {
@@ -160,6 +472,8 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: .5px;
+    margin-top: 1rem;
+    font-family: 'Wittgenstein', serif;
 }
 
 .hero-btn:hover {
@@ -167,7 +481,11 @@
     color: #000;
 }
 
-/* Limpieza */
-.topbar-left, .topbar-center, .topbar-right, .navfx {
-    all: unset !important;
+/* ===== APLICACIÓN GLOBAL ADICIONAL ===== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Wittgenstein', serif;
+}
+
+p, span, a, li, button, input, textarea, select {
+    font-family: 'Wittgenstein', serif;
 }
